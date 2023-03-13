@@ -5,6 +5,7 @@
 </template>
 
 <script >
+import { createSSRApp } from 'vue';
 import AppFooter from './components/AppFooter.vue';
 import AppHeader from './components/AppHeader.vue';
 export default {
@@ -12,6 +13,9 @@ export default {
   components: {
     AppHeader,
     AppFooter
+  },
+  created() { 
+    this.$store.dispatch({type:'loadToys'})
   }
 };
 </script>

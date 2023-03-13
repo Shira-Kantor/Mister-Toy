@@ -2,6 +2,8 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import About from './../views/AboutView.vue'
 import ToyIndex from './../views/ToyIndex.vue'
+import ToyEdit from './../views/ToyEdit.vue'
+import ToyDetails from './../views/ToyDetails.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -17,9 +19,28 @@ const router = createRouter({
       component: About
     },
     {
+      path: '/toy/edit/:toyId?',
+      component: ToyEdit,
+      name: 'EditToy',
+    },
+    {
+      path: '/toy/details/:toyId',
+      component: ToyDetails,
+    },
+    {
       path: '/toy',
       name: 'toy',
-      component: ToyIndex
+      component: ToyIndex,
+      // children: [
+      //   {
+      //     path: '/edit/:toyId?',
+      //     component: ToyEdit,
+      //   },
+      //   {
+      //     path: '/details/:toyId',
+      //     component: ToyDetails,
+      //   },
+      // ],
     }
   ]
 })

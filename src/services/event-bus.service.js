@@ -18,4 +18,16 @@ export function showMsg(txt, type = 'success') {
   emit('show-msg', {txt, type});
 }
 
+
+export function showUserMsg(msg) {
+  eventBus.emit('show-msg', msg)
+}
+
+export function showSuccessMsg(txt) {
+  showUserMsg({ txt, type: 'success' })
+}
+export function showErrorMsg(txt) {
+  showUserMsg({ txt, type: 'error' })
+}
+
 // window.myBus = eventBusService;

@@ -7,6 +7,14 @@ function makeId(length = 5) {
   }
   return txt
 }
+function saveToStorage(key, value) {
+  localStorage.setItem(key, JSON.stringify(value))
+}
+
+function loadFromStorage(key) {
+  const data = localStorage.getItem(key)
+  return (data) ? JSON.parse(data) : undefined
+}
 
 function getRandomInt(min, max) {
   min = Math.ceil(min)
@@ -33,4 +41,6 @@ export const utilService = {
   makeId,
   getRandomInt,
   debounce,
+  saveToStorage,
+  loadFromStorage
 }

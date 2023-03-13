@@ -1,4 +1,5 @@
 import { storageService } from "./asyncStorage.service.js"
+import { utilService } from "./util-service.js"
 import { httpService } from "./http.service.js"
 
 export const toyService = {
@@ -10,31 +11,31 @@ export const toyService = {
 }
 
 console.log('Toy service is up')
-// _createToys()
 
-// const KEY = 'toy_DB'
+const KEY = 'toy_DB'
 const API = 'toy/'
+_createToys()
 
 function query(filter) {
-    // return storageService.query(KEY, filter)
+    return storageService.query(KEY, filter)
     // return httpService.get(BASE_URL, filter).then(res => res.data)
 }
 
 function getById(toyId) {
-    // return storageService.getById(KEY, toyId)
+    return storageService.getById(KEY, toyId)
     // return httpService.get(BASE_URL, toyId).then(res => res.data)
 }
 
 function save(toyToSave) {
-    // if (toyToSave._id) return storageService.put(KEY, toyToSave)
-    // else return storageService.post(KEY, toyToSave)
+    if (toyToSave._id) return storageService.put(KEY, toyToSave)
+    else return storageService.post(KEY, toyToSave)
 
     // if (toyToSave._id) return httpService.put(BASE_URL, toyToSave).then(res => res.data)
     // else return httpService.post(BASE_URL, toyToSave).then(res => res.data)
 }
 
 function remove(toyId) {
-    // return storageService.remove(KEY, toyId)
+    return storageService.remove(KEY, toyId)
     // return httpService.delete(BASE_URL, toyId).then(res => res.data)
 }
 

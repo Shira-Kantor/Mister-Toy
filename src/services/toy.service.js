@@ -14,29 +14,30 @@ console.log('Toy service is up')
 
 const KEY = 'toy_DB'
 const API = 'toy/'
+const BASE_URL = 'toy/'
 _createToys()
 
 function query(filter) {
-    return storageService.query(KEY, filter)
-    // return httpService.get(BASE_URL, filter).then(res => res.data)
+    // return storageService.query(KEY, filter)
+    return httpService.get(BASE_URL, filter)
 }
 
 function getById(toyId) {
-    return storageService.getById(KEY, toyId)
-    // return httpService.get(BASE_URL, toyId).then(res => res.data)
+    // return storageService.getById(KEY, toyId)
+    return httpService.get(BASE_URL, toyId)
 }
 
 function save(toyToSave) {
-    if (toyToSave._id) return storageService.put(KEY, toyToSave)
-    else return storageService.post(KEY, toyToSave)
+    // if (toyToSave._id) return storageService.put(KEY, toyToSave)
+    // else return storageService.post(KEY, toyToSave)
 
-    // if (toyToSave._id) return httpService.put(BASE_URL, toyToSave).then(res => res.data)
-    // else return httpService.post(BASE_URL, toyToSave).then(res => res.data)
+    if (toyToSave._id) return httpService.put(BASE_URL, toyToSave)
+    else return httpService.post(BASE_URL, toyToSave)
 }
 
 function remove(toyId) {
-    return storageService.remove(KEY, toyId)
-    // return httpService.delete(BASE_URL, toyId).then(res => res.data)
+    // return storageService.remove(KEY, toyId)
+    return httpService.delete(BASE_URL + toyId)
 }
 
 function getEmptyToy() {

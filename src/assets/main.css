@@ -1,3 +1,5 @@
+@import './user-msg.css';
+
 .nav-header {
     display: flex;
     gap: 30px;

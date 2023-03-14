@@ -1,20 +1,32 @@
 
 <template>
     <h1>
-        toy index
+        Toy Store!
     </h1>
+    <ToyFilter @filter="filter" /> ||
+    <!-- @filteredTxt="debounceHandler" -->
+
     <!-- {{ msg }} -->
-   <!-- <pre>{{ toys }}</pre>  -->
-    <ToyList :toys="toys" 
-    @removed="removeToy"/>
+    <!-- <pre>{{ toys }}</pre>  -->
+    <ToyList :toys="toys" @removed="removeToy" />
 </template>
 
 <script>
 import ToyList from '../components/ToyList.vue'
+import ToyFilter from '../components/ToyFilter.vue'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 export default {
 
     name: 'ToyIndex',
+    data() {
+        return {
+            filterBy: { name: '', inStock: '', labels: [] },
+            sortBy: { by: '', desc: 1 }
+        }
+    },
+    created() {
+        // this.debounceHandler = _.debounce(this.setFilterByName, 500)
+    },
     computed: {
         msg() {
             console.log(this.$store.getters.getMsg);
@@ -25,19 +37,35 @@ export default {
         },
     },
     methods: {
-    removeToy(toyId) {
-      this.$store
-        .dispatch({ type: 'removeToy', toyId })
-        .then(() => {
-          showSuccessMsg('Toy removed')
-        })
-        .catch(err => {
-          showErrorMsg('Cannot remove toy')
-        })
-    }
+        removeToy(toyId) {
+            this.$store
+                .dispatch({ type: 'removeToy', toyId })
+                .then(() => {
+                    showSuccessMsg('Toy removed')
+                })
+                .catch(err => {
+                    showErrorMsg('Cannot remove toy')
+                })
+        },
+        filter(filter) {
+            // const filterBy = { ...this.filterBy }
+            console.log('filter in index', filter)
+            this.$store.dispatch({ type: 'loadToys', filter })
+
+            // If filtering in backend/service
+            // this.isLoading = true
+            // this.$store
+            //   .dispatch({ type: 'loadToys', filterBy })
+            //   .then(() => (this.isLoading = false))
+        },
+        // setFilterByStatus(status) {
+        //   this.filterBy.status = status
+        //   this.filterToys()
+        // },
     },
     components: {
-        ToyList
+        ToyList,
+        ToyFilter
     }
 }
 </script>

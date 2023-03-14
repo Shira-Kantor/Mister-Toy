@@ -2,17 +2,20 @@
   <AppHeader />
   <RouterView />
   <AppFooter />
+  <UserMsg/>
 </template>
 
 <script >
 import { createSSRApp } from 'vue';
 import AppFooter from './components/AppFooter.vue';
 import AppHeader from './components/AppHeader.vue';
+import UserMsg from './components/UserMsg.vue'
 export default {
   name: 'App',
   components: {
     AppHeader,
-    AppFooter
+    AppFooter,
+    UserMsg
   },
   created() { 
     this.$store.dispatch({type:'loadToys'})

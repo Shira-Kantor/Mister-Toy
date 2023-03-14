@@ -77,14 +77,14 @@ function _filterToys(toyToFilter, filter) {
     if (filterBy.inStock) {
         toys = toys.filter(toy => toy.inStock === filterBy.inStock)
     }
-    if (filterBy.labels.length) {
-        toys = toys.filter(toy => {
-            return filterBy.labels.every(label => toy.labels.includes(label))
-        })
-    }
-    if (sortBy.name) toys = toys.sort((a, b) => a.name.localeCompare(b.name) * sortBy.diff)
-    if (sortBy.price) toys = toys.sort((a, b) => (a.price - b.price) * sortBy.diff)
-    if (sortBy.created) toys = toys.sort((a, b) => (a.createAt - b.createAt) * sortBy.diff)
+    // if (filterBy.labels.length) {
+    //     toys = toys.filter(toy => {
+    //         return filterBy.labels.every(label => toy.labels.includes(label))
+    //     })
+    // }
+    // if (sortBy.name) toys = toys.sort((a, b) => a.name.localeCompare(b.name) * sortBy.diff)
+    // if (sortBy.price) toys = toys.sort((a, b) => (a.price - b.price) * sortBy.diff)
+    // if (sortBy.created) toys = toys.sort((a, b) => (a.createAt - b.createAt) * sortBy.diff)
 
     return Promise.resolve(toys)
 }

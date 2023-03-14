@@ -13,13 +13,13 @@ export const store = createStore({
             return toys
         },
         toysToDisplay({ filterBy, toys }) {
-            // if (!toys) return null
+            if (!toys) return null
 
-            // const { status, txt, pageIdx, pageSize } = filterBy
+            // const { name } = filterBy
             // let filteredToys = toys
 
             // const regex = new RegExp(txt, 'i')
-            // filteredToys = filteredToys.filter(toy => regex.test(toy.txt))
+            // filteredToys = filteredToys.filter(toy => regex.test(toy.name))
 
             // if (status) {
             //   filteredToys = filteredToys.filter(
@@ -50,15 +50,17 @@ export const store = createStore({
         addToy(state, { toy }) {
             state.toys.unshift(toy)
           },
+          setFilterBy(state, { filterBy }) {
+            state.filterBy = filterBy
+          },
     },
     actions: {
-        loadToys(context) {
-            console.log('context', context)
-            toyService
-                .query()
+        loadToys({commit} ,{filter}) {
+          return  toyService
+                .query(filter)
                 .then(toys => {
                     console.log('toys', toys);
-                    context.commit({ type: 'setToys', toys })
+                    commit({ type: 'setToys', toys })
                 })
                 .catch(err => {
                     throw err
@@ -74,6 +76,9 @@ export const store = createStore({
                 commit(payload) 
             })
         },
+        getSelectedToy({ commit }, { toyId }) {
+            return toyService.getById(toyId)
+          },
         saveToy({ commit, dispatch }, { toy }) {
             const actionType = toy._id ? 'updateToy' : 'addToy'
             return toyService.save(toy)

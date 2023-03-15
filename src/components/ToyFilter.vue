@@ -1,9 +1,9 @@
 <template>
     <h3>filter</h3>
     <section class="toy-filter">
-        <input class="input" v-model="filter.filterBy.name" @input="$emit('filter', filter)" type="text"
+        <input v-model="filterBy.name" @input="setFilter" type="text"
             placeholder="Search toy..">
-            In stock:<input type="checkbox"  v-model="filter.filterBy.isStock" @change="$emit('filter', filter)">
+            In stock:<input type="checkbox" v-model="filterBy.inStock" @change="setFilter">
     </section>
 </template>
 
@@ -11,22 +11,21 @@
 
 <script>
 export default {
+    emits: ['filter'],
     data() {
         return {
-            filter: {
                 filterBy: {
                     name: '',
                     isStock: '',
-                },
-                sortBy: {
-                    by: '',
-                    desc: 1,
-                }
             }
         }
     },
     methods: {
-       
+       setFilter(){
+        // console.log('hiiii',this.filterBy);
+        this.$emit('filter',this.filterBy)
+        
+       }
     }
 }
 </script>

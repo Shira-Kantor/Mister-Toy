@@ -19,12 +19,13 @@ _createToys()
 
 function query(filter) {
     // return storageService.query(KEY, filter)
+    console.log('filter from service',filter)
     return httpService.get(BASE_URL, filter)
 }
 
 function getById(toyId) {
     // return storageService.getById(KEY, toyId)
-    return httpService.get(BASE_URL, toyId)
+    return httpService.get(BASE_URL + toyId)
 }
 
 function save(toyToSave) {

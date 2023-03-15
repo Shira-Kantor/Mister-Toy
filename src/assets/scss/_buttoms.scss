@@ -1,0 +1,31 @@
+.toy-preview button {
+   
+    height: 50%;
+    background-color: inherit;
+    border: 1px solid rgb(10, 2, 3);
+    border-radius: 30px;
+    padding: 5px;
+}
+.btn-add{
+    height: 50%;
+   background-color: inherit;
+   border: 1px solid rgb(10, 2, 3);
+//    border-radius: 30px;
+background-color: lightblue;
+font-weight: bold;
+   padding: 5px;
+}
+
+.toy-edit,
+.toy-details {
+    margin: auto;
+    width: 400px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.05em;
+}

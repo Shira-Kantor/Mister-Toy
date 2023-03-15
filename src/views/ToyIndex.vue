@@ -3,7 +3,7 @@
     <h1>
         Toy Store!
     </h1>
-    <ToyFilter @filter="filter" /> ||
+    <ToyFilter @filter="setFilter" /> ||
     <!-- @filteredTxt="debounceHandler" -->
 
     <!-- {{ msg }} -->
@@ -20,8 +20,7 @@ export default {
     name: 'ToyIndex',
     data() {
         return {
-            filterBy: { name: '', inStock: '', labels: [] },
-            sortBy: { by: '', desc: 1 }
+            // filterBy: { name: '', inStock: '', labels: [] }
         }
     },
     created() {
@@ -47,7 +46,7 @@ export default {
                     showErrorMsg('Cannot remove toy')
                 })
         },
-        filter(filter) {
+        setFilter(filter) {
             // const filterBy = { ...this.filterBy }
             console.log('filter in index', filter)
             this.$store.dispatch({ type: 'loadToys', filter })
@@ -58,10 +57,7 @@ export default {
             //   .dispatch({ type: 'loadToys', filterBy })
             //   .then(() => (this.isLoading = false))
         },
-        // setFilterByStatus(status) {
-        //   this.filterBy.status = status
-        //   this.filterToys()
-        // },
+
     },
     components: {
         ToyList,

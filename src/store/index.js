@@ -3,7 +3,10 @@ import { toyService } from '../services/toy.service.js'
 export const store = createStore({
     state: {
         msg: 'Store Is Running',
-        toys: null
+        toys: [],
+        labels: ['Doll',
+            'Battery Powered',
+            'Baby']
     },
     getters: {
         getMsg(state) {
@@ -12,9 +15,23 @@ export const store = createStore({
         getToys({ toys }) {
             return toys
         },
+        getLabels({ labels }) {
+            return labels
+        },
+        getAvg({ toys, labels }) {
+            console.log('toys in getAvg:',toys);
+            return labels.map((label) => {
+                const filteredToys = toys.filter((toy) => {
+
+                    return toy.labels.includes(label)
+                })
+                return filteredToys.reduce((acc, filterToy) => {
+                    return acc + +filterToy.price
+                }, 0)
+            })
+        },
         toysToDisplay({ filterBy, toys }) {
             if (!toys) return null
-
             // const { name } = filterBy
             // let filteredToys = toys
 
@@ -28,7 +45,6 @@ export const store = createStore({
             //       (!toy.isDone && status === 'active')
             //   )
             // }
-
             // const startIdx = pageIdx * pageSize
             // filteredToys = filteredToys.slice(startIdx, startIdx + pageSize)
 
@@ -49,18 +65,20 @@ export const store = createStore({
         },
         addToy(state, { toy }) {
             state.toys.unshift(toy)
-          },
-          setFilterBy(state, { filterBy }) {
+        },
+        setFilterBy(state, { filterBy }) {
             state.filterBy = filterBy
-          },
+        },
     },
     actions: {
-        loadToys({commit} ,{filter}) {
-          return  toyService
+        loadToys({ commit }, { filter }) {
+            console.log('filter store',filter)
+            return toyService
                 .query(filter)
                 .then(toys => {
-                    console.log('toys', toys);
+                    // console.log('toys', toys);
                     commit({ type: 'setToys', toys })
+                    return Promise.resolve()
                 })
                 .catch(err => {
                     throw err
@@ -73,12 +91,17 @@ export const store = createStore({
                 const toyTxt = state.toys.find(
                     toy => toy._id === payload.toyId
                 ).name
-                commit(payload) 
+                commit(payload)
             })
         },
         getSelectedToy({ commit }, { toyId }) {
-            return toyService.getById(toyId)
-          },
+            console.log(toyId);
+            return toyService.getById(toyId).then(toy => {
+                console.log('toyyyyyyyyyy', toy);
+                return toy
+
+            })
+        },
         saveToy({ commit, dispatch }, { toy }) {
             const actionType = toy._id ? 'updateToy' : 'addToy'
             return toyService.save(toy)

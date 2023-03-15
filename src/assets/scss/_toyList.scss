@@ -1,0 +1,29 @@
+.toy-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    background-color: pink;
+}
+
+.toy-preview,
+.toy-details,
+.toy-edit {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+   
+    font-size: 1.1em;
+    background-color: whitesmoke;
+    color: #595454;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+    width: 200px;
+    height: fit-content;
+    border: 0.2px solid #d8d8d8;
+}
+.toy-img {
+    size: 100%;
+}

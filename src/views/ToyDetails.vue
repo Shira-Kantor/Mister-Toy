@@ -5,6 +5,7 @@
         <p>Name:  {{ toy.name }}</p>
         <p>Price: {{ toy.price }}</p>
         <p>In stock: {{ toy.inStock }}</p>
+        <pre>{{ toy }}</pre>
 
         <router-link to="/toy">Back</router-link>
     </section>

@@ -1,0 +1,26 @@
+.logo{
+  width: 20%;
+  height: 20%;
+    margin-left: 80%;
+    position: absolute;
+}
+.nav-header {
+    display: flex;
+    gap: 30px;
+    // justify-content: center;
+    align-items: center;
+    background-color: rgb(201, 141, 214);
+    height: 50px;
+    
+}
+.nava.first{
+    margin-left: 500px;
+}
+.nava{
+    color: rgb(212, 255, 192);
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 40px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

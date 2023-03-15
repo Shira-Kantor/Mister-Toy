@@ -1,26 +1,40 @@
 <template>
-  <li class="toy-preview">
-   
+  <li class="toy-preview toy">
     <h2>{{ toy.name }}</h2>
-    <h4>Price:  {{ toy.price }}</h4>
+    <h4>Price: {{ toy.price }}</h4>
+    <img class="toy-img" :src="imgUrl" alt="" />
     <button class="delete-btn" @click="$emit('removed')">X</button>
-    <RouterLink
-              :to="'/toy/edit/' + toy._id"
-              class="btn">
-              <span>Edit</span>
-            </RouterLink>
-            <RouterLink
-              :to="'/toy/details/' + toy._id"
-              class="btn">
-              <span>Details</span>
-            </RouterLink>
-            </li>
+
+    <RouterLink :to="'/toy/edit/' + toy._id">
+      <button class="btn">Edit</button>
+    </RouterLink>
+
+    <RouterLink :to="'/toy/details/' + toy._id"> <button class="btn">
+        Details</button>
+    </RouterLink>
+
+
+  </li>
 </template>
 <script>
 export default {
   name: 'ToyPreview',
-  props: {toy:Object}, 
+  props: { toy: Object },
   emits: ['removed'],
-
+  data() {
+    return {
+      imgUrl: `src/assets/img/${this.toy.name}.jpg`
+    }
+  },
+  // computed: {
+  //   imgUrl(){
+  //     return `src/assets/img/${this.toy.name}.jpg`
+  //   }
+  // }
+  methods: {
+    getimg() {
+      if (!imgUrl) return `src/assets/img/Ball.jpg`
+    }
   }
+}
 </script>

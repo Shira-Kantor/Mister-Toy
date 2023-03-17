@@ -16,7 +16,7 @@ export default {
         return {
                 filterBy: {
                     name: '',
-                    isStock: '',
+                    inStock: '',
             }
         }
     },

@@ -19,7 +19,7 @@ export const store = createStore({
             return labels
         },
         getAvg({ toys, labels }) {
-            console.log('toys in getAvg:',toys);
+            // console.log('toys in getAvg:',toys);
             return labels.map((label) => {
                 const filteredToys = toys.filter((toy) => {
 
@@ -72,7 +72,7 @@ export const store = createStore({
     },
     actions: {
         loadToys({ commit }, { filter }) {
-            console.log('filter store',filter)
+            // console.log('filter store',filter)
             return toyService
                 .query(filter)
                 .then(toys => {
@@ -85,7 +85,7 @@ export const store = createStore({
                 })
         },
         removeToy({ commit, dispatch, state }, payload) {
-            console.log('payload', payload)
+            // console.log('payload', payload)
 
             return toyService.remove(payload.toyId).then(() => {
                 const toyTxt = state.toys.find(
@@ -97,19 +97,19 @@ export const store = createStore({
         getSelectedToy({ commit }, { toyId }) {
             console.log(toyId);
             return toyService.getById(toyId).then(toy => {
-                console.log('toyyyyyyyyyy', toy);
+                // console.log('toyyyyyyyyyy', toy);
                 return toy
 
             })
         },
-        saveToy({ commit, dispatch }, { toy }) {
+        saveToy({ commit }, { toy }) {
             const actionType = toy._id ? 'updateToy' : 'addToy'
-            return toyService.save(toy)
+            toyService.save(toy)
                 .then(savedToy => {
                     commit({ type: actionType, toy: savedToy })
-                    let name = actionType === 'addToy' ? 'Added a toy' : 'Updated toy'
-                    name += `: ${savedToy.name}`
-                    return savedToy
+                    // let name = actionType === 'addToy' ? 'Added a toy' : 'Updated toy'
+                    // name += `: ${savedToy.name}`
+                    // return savedToy
                 })
         },
     },

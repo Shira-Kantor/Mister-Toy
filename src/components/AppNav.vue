@@ -1,11 +1,11 @@
 <template>
-    <img class="logo" src="../assets/img/logo.avif">
+    <img class="logo-shira" src="../assets/img/shira.jpg">
     <nav class="nav-header">
-  <RouterLink class="nava first" to="/">Home   </RouterLink>
-  <RouterLink class="nava" to="/about">About   </RouterLink>
-  <RouterLink class="nava" to="/map">Map    </RouterLink>
-  <RouterLink class="nava" to="/chart">Chart    </RouterLink>
-  <RouterLink class="nava" to="/toy">Toy</RouterLink>
+  <RouterLink class="nava first" to="/"><button class="nav-btn">Home</button> </RouterLink>
+  <RouterLink class="nava" to="/about"><button class="nav-btn">About</button>   </RouterLink>
+  <RouterLink class="nava" to="/map"><button class="nav-btn">Map</button>    </RouterLink>
+  <RouterLink class="nava" to="/chart"><button class="nav-btn">Chart</button>    </RouterLink>
+  <RouterLink class="nava" to="/toy"><button class="nav-btn">Toy</button></RouterLink>
  </nav>
 </template>
 

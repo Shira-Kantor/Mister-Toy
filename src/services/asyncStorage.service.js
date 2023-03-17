@@ -33,8 +33,8 @@ function put(key, toyToSave) {
 }
 
 function post(key, toyToSave) {
-    toyToSave._id = utilService.makeId()
-    toyToSave.createdAt = Date.now()
+    // toyToSave._id = utilService.makeId()
+    // toyToSave.createdAt = Date.now()
 
     const toys = utilService.loadFromStorage(key)
     toys.unshift(toyToSave)
@@ -93,7 +93,7 @@ function _createToys(key) {
     const toys = []
     for (let i = 0; i < 10; i++) {
         const toy = {
-            _id: utilService.makeId(),
+            // _id: utilService.makeId(),
             name: utilService.makeId(8),
             price: utilService.getRandomInt(10, 100),
             labels: [labels[utilService.getRandomInt(0, 6)], labels[utilService.getRandomInt(0, 6)]],

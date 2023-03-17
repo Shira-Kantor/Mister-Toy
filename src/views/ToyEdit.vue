@@ -1,16 +1,15 @@
 <template>
+    <section v-if="toy" class="toy-edit">
+        <!-- <h4>hello from edit</h4> -->
+        <form @submit.prevent="saveToy" class="flex space-between align-center">
+            <input class="input" v-model="toy.name" type="text">
+            <input class="input" v-model="toy.price" type="number">
 
-   <section v-if="toy" class="toy-edit">
-    <!-- <h4>hello from edit</h4> -->
-    <form @submit.prevent="saveToy" class="flex space-between align-center">
-        <input class="input" v-model="toy.name" type="text">
-        <input class="input" v-model="toy.price" type="number">
-        
-        <!-- <input class="input" v-model="toy.isStock" type="checkbox" > -->
-        <button class="btn">Save</button>
-    </form>
-    <router-link to="/toy">Back</router-link>
-   </section>
+            <!-- <input class="input" v-model="toy.inStock" type="checkbox" > -->
+            <button class="btn">Save</button>
+        </form>
+        <router-link to="/toy">Back</router-link>
+    </section>
 </template>
 
 <script>
@@ -24,31 +23,18 @@ export default {
         }
     },
     created() {
-    const { toyId } = this.$route.params
-    this.$store.dispatch({ type: 'getSelectedToy', toyId })
-    .then((toy) => {
-        console.log('from edit',toy);
-        this.toy = toy
-    })
-  },
-    // watch: {
-    //     '$route.params': {
-    //         handler() {
-    //             const { toyId } = this.$route.params
-    //             if (toyId) {
-    //                 toyService.getById(toyId)
-    //                     .then(toy => (this.toy = toy))
+        const { toyId } = this.$route.params
+        console.log('toyId edit',toyId)
+        if (toyId) {
+            toyService.getById(toyId).then((toy) => {
+                console.log('from edit', toy);
+                this.toy = toy
+            })
+        } else {
+            this.toy = toyService.getEmptyToy()
+        }
+    },
 
-    //                 // this.$store
-    //                 //   .dispatch({ type: 'getById', toyId })
-    //                 //   .then(() => (this.toy = this.toyClone))
-    //             } else {
-    //                 this.toy = toyService.getEmptyToy()
-    //             }
-    //         },
-    //         immediate: true,
-    //     },
-    // },
     methods: {
         saveToy() {
             this.$store

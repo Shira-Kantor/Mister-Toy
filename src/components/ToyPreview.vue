@@ -3,15 +3,19 @@
     <h2>{{ toy.name }}</h2>
     <h4>Price: {{ toy.price }}</h4>
     <img class="toy-img" :src="imgUrl" alt="" />
-    <button class="delete-btn" @click="$emit('removed')">X</button>
+    <section class="pre-btn">
 
-    <RouterLink :to="'/toy/edit/' + toy._id">
-      <button class="btn">Edit</button>
-    </RouterLink>
 
-    <RouterLink :to="'/toy/details/' + toy._id"> <button class="btn">
-        Details</button>
-    </RouterLink>
+      <button class="delete-btn pre" @click="$emit('removed')">X</button>
+  
+      <RouterLink :to="'/toy/edit/' + toy._id">
+        <button class="btn pre">Edit</button>
+      </RouterLink>
+  
+      <RouterLink :to="'/toy/details/' + toy._id"> <button class="btn pre">
+          Details</button>
+      </RouterLink>
+    </section>
 
 
   </li>

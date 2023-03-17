@@ -17,16 +17,15 @@ import { toyService } from '../services/toy.service.js'
 
 export default {
     watch: {
-        '$route.params': {
-            handler() {
-                const { toyId } = this.$route.params
-
-                toyService.getById(toyId)
-                    .then(toy => (this.toy = toy))
-            },
-            immediate: true,
+    '$route.params': {
+        async handler() {
+            const { toyId } = this.$route.params;
+            const toy = await toyService.getById(toyId);
+            this.toy = toy;
         },
+        immediate: true,
     },
+},
     data() {
         return {
             toy: null,

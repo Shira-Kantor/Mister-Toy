@@ -37,8 +37,7 @@ export default {
     },
     methods: {
         removeToy(toyId) {
-            this.$store
-                .dispatch({ type: 'removeToy', toyId })
+            this.$store.dispatch({ type: 'removeToy', toyId })
                 .then(() => {
                     showSuccessMsg('Toy removed')
                 })

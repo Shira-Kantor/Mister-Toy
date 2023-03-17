@@ -1,26 +1,30 @@
-.toy-preview button {
-   
-    height: 50%;
+.pre {
+    // height: 50%;
+    width:max-content;
+    margin:auto;
     background-color: inherit;
-    border: 1px solid rgb(10, 2, 3);
+    border: 3px solid rgb(111, 80, 84);
     border-radius: 30px;
     padding: 5px;
 }
-.btn-add{
+
+
+.btn-add {
     height: 50%;
-   background-color: inherit;
-   border: 1px solid rgb(10, 2, 3);
-//    border-radius: 30px;
-background-color: lightblue;
-font-weight: bold;
-   padding: 5px;
+    background-color: inherit;
+    border: 1px solid rgb(10, 2, 3);
+    //    border-radius: 30px;
+    background-color: lightblue;
+    font-weight: bold;
+    padding: 5px;
 }
 
 .toy-edit,
 .toy-details {
-    margin: auto;
-    width: 400px;
+    // margin: auto;
+    // width: 400px;
 }
+
 
 button {
     cursor: pointer;
@@ -28,4 +32,13 @@ button {
     outline: none;
     background: none;
     font-size: 1.05em;
+}
+
+.nav-btn {
+    border: 2px solid grey;
+    border-radius: 20px;
+}
+
+.nav-btn:hover {
+    background-color: palevioletred;
 }

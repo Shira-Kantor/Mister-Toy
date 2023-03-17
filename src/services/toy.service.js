@@ -8,22 +8,30 @@ export const toyService = {
     save,
     remove,
     getEmptyToy,
+    addToyMsg
 }
-
-console.log('Toy service is up')
+window.cs = toyService
 
 const KEY = 'toy_DB'
 const API = 'toy/'
 const BASE_URL = 'toy/'
 _createToys()
 
-function query(filter) {
-    // return storageService.query(KEY, filter)
-    console.log('filter from service',filter)
+async function query(filter) {
+    // var toys = await storageService.query(STORAGE_KEY)
+    // if (filterBy.name) {
+    //     const regex = new RegExp(filterBy.name, 'i')
+    //     toys = toys.filter(toy => regex.test(toy.vendor) || regex.test(toy.description))
+    // }
+    // if (filterBy.price) {
+    //     toys = toys.filter(toy => toy.price <= filterBy.price)
+    // }
+    // return toys
     return httpService.get(BASE_URL, filter)
 }
 
 function getById(toyId) {
+    console.log('toyId service',toyId)
     // return storageService.getById(KEY, toyId)
     return httpService.get(BASE_URL + toyId)
 }
@@ -31,8 +39,7 @@ function getById(toyId) {
 function save(toyToSave) {
     // if (toyToSave._id) return storageService.put(KEY, toyToSave)
     // else return storageService.post(KEY, toyToSave)
-
-    if (toyToSave._id) return httpService.put(BASE_URL, toyToSave)
+    if (toyToSave._id) return httpService.put(BASE_URL + toyToSave._id, toyToSave)
     else return httpService.post(BASE_URL, toyToSave)
 }
 
@@ -40,14 +47,29 @@ function remove(toyId) {
     // return storageService.remove(KEY, toyId)
     return httpService.delete(BASE_URL + toyId)
 }
+async function addToyMsg(toyId, txt) {
+    // const toy = await getById(toyId)
+    // if (!toy.msgs) toy.msgs = []
+
+    // const msg = {
+    //     id: utilService.makeId(),
+    //     by: userService.getLoggedinUser(),
+    //     txt
+    // }
+    // toy.msgs.push(msg)
+    // await storageService.put(STORAGE_KEY, toy)    
+    const savedMsg = await httpService.post(`toy/${toyId}/msg`, { txt })
+    return savedMsg
+}
+
 
 function getEmptyToy() {
     return {
-        _id: '',
+        // _id: '',
         name: '',
         price: null,
         labels: ['Doll', 'Battery Powered', 'Baby'],
-        createdAt: new Date(Date.now()).toLocaleString(),
+        // createdAt: new Date(Date.now()).toLocaleString(),
         inStock: true,
     }
 }
@@ -63,20 +85,19 @@ function _createToys() {
                 ['Good', 'Nice', 'Fun']
             ),
             _createToy('Ball', 50, ['Outdoor', 'Baby'], ['Amazing!']),
-            _createToy('Cards', 250, ['Box game'], ['wow!', 'awesome']),
+            _createToy('Toys', 250, ['Box game'], ['wow!', 'awesome']),
         ]
         localStorage.setItem(KEY, JSON.stringify(toys))
     }
 }
 
-function _createToy(name, price, labels, reviews) {
+function _createToy(name, price, labels) {
     return {
-        _id: utilService.makeId(),
+        // _id: utilService.makeId(),
         name,
         price,
         labels,
         inStock: true,
-        createdAt: new Date(Date.now()).toLocaleString(),
-        reviews: reviews,
+        // createdAt: new Date(Date.now()).toLocaleString()
     }
 }

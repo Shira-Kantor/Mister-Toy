@@ -1,16 +1,16 @@
 
 <template>
   <main>
-    <TheWelcome />
+    <img class="logo" src="../assets/img/logo.avif">
   </main>
 </template>
 
 <script>
-import TheWelcome from '../components/TheWelcome.vue'
+
 export default {
   name: 'HomeView',
   components: {
-    TheWelcome
+    
   }
 }
 </script>

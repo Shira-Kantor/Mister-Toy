@@ -1,5 +1,4 @@
 <template>
-    <h3>filter</h3>
     <section class="toy-filter">
         <input v-model="filterBy.name" @input="setFilter" type="text"
             placeholder="Search toy..">

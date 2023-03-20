@@ -6,6 +6,10 @@ import ToyEdit from './../views/ToyEdit.vue'
 import ToyDetails from './../views/ToyDetails.vue'
 import  GoogleMap from './../views/GoogleMap.vue'
 import  Chart from './../views/Chart.vue'
+import  userIndex from './../views/user/userIndex.vue'
+import ReviewIndex from './../views/ReviewIndex.vue'
+import login from '../views/Login.vue'
+import Chat from './../views/Chat.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -31,6 +35,21 @@ const router = createRouter({
       component: Chart,
     },
     {
+      path: '/login',
+      name: 'login',
+      component: login,
+  },
+    {
+      path: '/review',
+      name: 'ReviewIndex',
+      component: ReviewIndex
+    },
+    {
+      path: '/chat',
+      name: 'Chat',
+      component: Chat
+    },
+    {
       path: '/toy/edit/:toyId?',
       component: ToyEdit,
       name: 'EditToy',
@@ -53,6 +72,11 @@ const router = createRouter({
       //     component: ToyDetails,
       //   },
       // ],
+    },
+    {
+      path: '/user',
+      name: 'user',
+      component: userIndex
     }
   ]
 })

@@ -1,5 +1,4 @@
 <template>
- 
     <div v-if="alive" class="user-msg" :class="alertClass" >
         {{msg.txt}}
     </div>

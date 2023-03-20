@@ -9,8 +9,6 @@ export const storageService = {
     getLabels,
 }
 
-
-
 function query(key, filter) {
     var toys = utilService.loadFromStorage(key)
     if (!toys || !toys.length) toys = _createToys(key)
@@ -69,7 +67,7 @@ function _filterToys(toyToFilter, filter) {
     var toys = [...toyToFilter]
 
     const { filterBy, sortBy } = filter
-    console.log(filter)
+    // console.log(filter)
     if (filterBy.name) {
         const regex = new RegExp(filterBy.name, 'i')
         toys = toys.filter(toy => regex.test(toy.name))

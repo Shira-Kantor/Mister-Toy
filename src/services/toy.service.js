@@ -31,7 +31,7 @@ async function query(filter) {
 }
 
 function getById(toyId) {
-    console.log('toyId service',toyId)
+    // console.log('toyId service',toyId)
     // return storageService.getById(KEY, toyId)
     return httpService.get(BASE_URL + toyId)
 }

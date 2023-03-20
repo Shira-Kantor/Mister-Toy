@@ -1,6 +1,6 @@
 <template>
     <DoughnutChart :chartData="testData" :options="options" />
-    <pre> {{ toys }}</pre>
+    <!-- <pre> {{ toys }}</pre> -->
 </template>
 
 <script lang="ts">

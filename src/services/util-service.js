@@ -36,11 +36,39 @@ function debounce(func, wait) {
     timeout = setTimeout(later, wait)
   }
 }
+function makeLorem(size = 100) {
+  var words = ['The sky', 'above', 'the port', 'was', 'the color of television', 'tuned', 'to', 'a dead channel', '.', 'All', 'this happened', 'more or less', '.', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', '.', 'It', 'was', 'a pleasure', 'to', 'burn']
+  var txt = ''
+  while (size > 0) {
+      size--
+      txt += words[Math.floor(Math.random() * words.length)] + ' '
+  }
+  return txt
+}
+function prettyJSON(obj) {
+  function _replacer(jmatch, pIndent, pKey, pVal, pEnd) {
+      var key = '<span class=json-key>'
+      var val = '<span class=json-value>'
+      var str = '<span class=json-string>'
+      var r = pIndent || ''
+      if (pKey) r = r + key + pKey.replace(/[": ]/g, '') + '</span>: '
+      if (pVal) r = r + (pVal[0] == '"' ? str : val) + pVal + '</span>'
+      return r + (pEnd || '')
+  }
+
+  const jsonLine = /^( *)("[\w]+": )?("[^"]*"|[\w.+-]*)?([,[{])?$/mg
+  return JSON.stringify(obj, null, 3)
+      .replace(/&/g, '&amp;').replace(/\\"/g, '&quot;')
+      .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(jsonLine, _replacer)
+}
 
 export const utilService = {
   makeId,
   getRandomInt,
   debounce,
   saveToStorage,
-  loadFromStorage
+  loadFromStorage,
+  makeLorem,
+  prettyJSON
 }

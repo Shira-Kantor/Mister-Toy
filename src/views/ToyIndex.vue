@@ -8,6 +8,7 @@
 
     <!-- {{ msg }} -->
     <!-- <pre>{{ toys }}</pre>  -->
+    <RouterLink to="/toy/edit"><button v-if="user.isAdmin" class="btn btn-add">Add Toy</button> </RouterLink>
     <ToyList :toys="toys" @removed="removeToy" />
 </template>
 
@@ -20,6 +21,7 @@ export default {
     name: 'ToyIndex',
     data() {
         return {
+            // user: null
             // filterBy: { name: '', inStock: '', labels: [] }
         }
     },
@@ -28,26 +30,28 @@ export default {
     },
     computed: {
         msg() {
-            console.log(this.$store.getters.getMsg);
+            // console.log(this.$store.getters.getMsg);
             return this.$store.getters.getMsg
         },
         toys() {
             return this.$store.getters.toysToDisplay
         },
+        user() {
+            return this.$store.getters.user
+        }
     },
     methods: {
-        removeToy(toyId) {
-            this.$store.dispatch({ type: 'removeToy', toyId })
-                .then(() => {
-                    showSuccessMsg('Toy removed')
-                })
-                .catch(err => {
-                    showErrorMsg('Cannot remove toy')
-                })
-        },
+        async removeToy(toyId) {
+    try {
+        await this.$store.dispatch({ type: 'removeToy', toyId })
+        showSuccessMsg('Toy removed')
+    } catch (err) {
+        showErrorMsg('Cannot remove toy')
+    }
+},
         setFilter(filter) {
             // const filterBy = { ...this.filterBy }
-            console.log('filter in index', filter)
+            // console.log('filter in index', filter)
             this.$store.dispatch({ type: 'loadToys', filter })
 
             // If filtering in backend/service

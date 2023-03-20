@@ -22,31 +22,31 @@ export default {
             toy: null,
         }
     },
-    created() {
-        const { toyId } = this.$route.params
-        console.log('toyId edit',toyId)
-        if (toyId) {
-            toyService.getById(toyId).then((toy) => {
-                console.log('from edit', toy);
-                this.toy = toy
-            })
-        } else {
-            this.toy = toyService.getEmptyToy()
+    async created() {
+    const { toyId } = this.$route.params
+    // console.log('toyId edit',toyId)
+    if (toyId) {
+        try {
+            const toy = await toyService.getById(toyId)
+            console.log('from edit', toy);
+            this.toy = toy
+        } catch (err) {
+            console.error(err)
         }
-    },
-
+    } else {
+        this.toy = toyService.getEmptyToy()
+    }
+},
     methods: {
-        saveToy() {
-            this.$store
-                .dispatch({ type: 'saveToy', toy: this.toy })
-                .then(toy => {
-                    showSuccessMsg('Added/Updated succssefully')
-                    this.$router.push('/toy')
-                })
-                .catch(err => {
-                    showErrorMsg("Couldn't add/update toy")
-                })
-        },
+        async saveToy() {
+    try {
+        const toy = await this.$store.dispatch({ type: 'saveToy', toy: this.toy })
+        showSuccessMsg('Added/Updated successfully')
+        this.$router.push('/toy')
+    } catch (err) {
+        showErrorMsg("Couldn't add/update toy")
+    }
+},
     },
 }
 </script>

@@ -1,0 +1,32 @@
+.review-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    li {
+        background-color: lightgray;
+        color: darkmagenta;
+        padding: 5px;
+        margin: 5px;
+    }
+    a {
+        color: lightblue;
+        padding: 10px;
+    }    
+    pre {
+        background-color: #ddd;
+        color: #333;
+        padding: 10px 5px;
+        margin: 5px;
+    }    
+}
+.review-preview{
+    margin-block-start: 20px;
+    margin-block-end: 10px;
+  }
+  .review-header{
+    margin-block-start: 50px;
+    
+  }
+
+
+
